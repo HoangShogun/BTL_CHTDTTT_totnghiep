@@ -2,14 +2,16 @@ import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 import networkx as nx
-# Consequents
+
 
 def thuattoan(dsip,gdpip,urip):
+    # tạo vũ trụ
+    # Consequents
     score = ctrl.Consequent(np.arange(0, 11), 'Score')
 
 # Antecedents
-    danso = ctrl.Antecedent(np.arange(0, 200), 'Dan So')
-    gdp = ctrl.Antecedent(np.arange(0, 700000, 10000), 'GDP')
+    danso = ctrl.Antecedent(np.arange(0, 1400), 'Dan So')
+    gdp = ctrl.Antecedent(np.arange(0, 1000000, 10000), 'GDP')
     ur = ctrl.Antecedent(np.arange(0, 30, 0.1), 'UR')
 
 # print(danso, gdp, ur, score)
@@ -17,12 +19,12 @@ def thuattoan(dsip,gdpip,urip):
 # CHIA DAN SO
     danso['LP'] = fuzz.trapmf(danso.universe, [0, 0, 10, 26])
     danso['MP'] = fuzz.trimf(danso.universe, [10, 26, 60])
-    danso['HP'] = fuzz.trapmf(danso.universe, [26, 60, 200, 200])
+    danso['HP'] = fuzz.trapmf(danso.universe, [26, 60, 1400, 1400])
 
 # CHIA GDP
     gdp['Lgdp'] = fuzz.trapmf(gdp.universe, [0, 0, 40000, 290000])
     gdp['Mgdp'] = fuzz.trimf(gdp.universe, [40000, 290000, 600000])
-    gdp['Hgdp'] = fuzz.trapmf(gdp.universe, [290000, 600000, 700000, 700000])
+    gdp['Hgdp'] = fuzz.trapmf(gdp.universe, [290000, 600000, 1000000, 1000000])
 
 # CHIA UR
     ur['Lur'] = fuzz.trapmf(ur.universe, [0, 0, 1, 6])

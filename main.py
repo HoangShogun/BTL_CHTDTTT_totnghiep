@@ -12,7 +12,7 @@ result=0
 def getVal():
     global result
     danso = int(danso_entry.get())
-    gdp = int(gdp_entry.get())
+    gdp = float(gdp_entry.get())*1000
     ur = float(ur_entry.get())
     result = thuat_toan.thuattoan(danso, gdp, ur)
     ketqua.config(text="Kết quả: " + str(round(result,4)))
@@ -30,7 +30,7 @@ def getVal():
 
 Label(top, text="Dân số: ").place(x=40, y=60)
 Label(top, text="GDP: ").place(x=40, y=100)
-Label(top, text="(triệu Đô)").place(x=240, y=100)
+Label(top, text="(tỷ Đô)").place(x=240, y=100)
 Label(top, text="(triệu dân)").place(x=240, y=60)
 Label(top, text="UR: ").place(x=40, y=140)
 Label(top, text="(%)").place(x=240, y=140)
